@@ -38,10 +38,17 @@ export default {
 
     submitFormComment() {
       const text = this.commentTextarea.split("\n");
+      let validText = [];
+
+      for (let i = 0; i < text.length; ++i) {
+        if (text[i] !== "") {
+          validText.push(text[i]);
+        }
+      }
 
       this.addComment({
         name: this.nameInput,
-        text,
+        text: validText,
         id: Date.now(),
       });
 
