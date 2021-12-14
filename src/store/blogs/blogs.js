@@ -42,8 +42,6 @@ export default {
     },
 
     deleteComment(state, deletedComment) {
-      console.log(deletedComment);
-      console.log(state.currentBlog);
       state.blogs = state.blogs.map((blog) => {
         if (blog.id === state.currentBlog.id) {
           blog.comments = blog.comments.filter(

@@ -42,34 +42,39 @@ export default {
     };
   },
   mounted() {
-    this.inputTitle = this.checkUpdateState
-      ? this.selectedCurrentBlog.title
-      : "";
-    this.textareaResult = this.checkUpdateState
-      ? this.selectedCurrentBlog.content
-      : "";
-    this.inputDescription = this.checkUpdateState
-      ? this.selectedCurrentBlog.description
-      : "";
+    let { content, title, description } = this.selectedCurrentBlog;
+
+    content = content.map((item, i) => (i !== 0 ? "\n" + item : item)).join("");
+
+    this.inputTitle = this.checkUpdateState ? title : "";
+    this.textareaResult = this.checkUpdateState ? content : "";
+    this.inputDescription = this.checkUpdateState ? description : "";
   },
   computed: mapGetters(["checkUpdateState", "selectedCurrentBlog"]),
   methods: {
     ...mapMutations(["addBlog", "updateBlog"]),
 
     submitFormBlog() {
+      let content = this.textareaResult.split("\n");
+      let validContent = [];
+
+      for (let i = 0; i < content.length; ++i) {
+        if (content[i] !== "") {
+          validContent.push(content[i]);
+        }
+      }
+
       if (this.checkUpdateState) {
         this.updateBlog({
           id: this.selectedCurrentBlog.id,
           title: this.inputTitle,
-          content: this.textareaResult,
+          content: validContent,
           description: this.inputDescription,
         });
       } else {
-        const content = this.textareaResult.split("\n");
-
         this.addBlog({
           title: this.inputTitle,
-          content,
+          content: validContent,
           description: this.inputDescription,
           comments: [],
           id: Date.now(),
