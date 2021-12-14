@@ -42,13 +42,24 @@ export default {
     };
   },
   mounted() {
-    let { content, title, description } = this.selectedCurrentBlog;
+    if (this.selectedCurrentBlog?.content) {
+      this.selectedCurrentBlog.content = this.selectedCurrentBlog.content
+        .map((item, i) => (i !== 0 ? "\n" + item : item))
+        .join("");
+    }
 
-    content = content.map((item, i) => (i !== 0 ? "\n" + item : item)).join("");
-
-    this.inputTitle = this.checkUpdateState ? title : "";
-    this.textareaResult = this.checkUpdateState ? content : "";
-    this.inputDescription = this.checkUpdateState ? description : "";
+    this.inputTitle =
+      this.checkUpdateState && this.selectedCurrentBlog?.title
+        ? this.selectedCurrentBlog.title
+        : "";
+    this.textareaResult =
+      this.checkUpdateState && this.selectedCurrentBlog?.content
+        ? this.selectedCurrentBlog.content
+        : "";
+    this.inputDescription =
+      this.checkUpdateState && this.selectedCurrentBlog?.description
+        ? this.selectedCurrentBlog.description
+        : "";
   },
   computed: mapGetters(["checkUpdateState", "selectedCurrentBlog"]),
   methods: {

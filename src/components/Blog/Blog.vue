@@ -15,6 +15,8 @@
         удалить
       </button>
     </div>
+
+    <p class="blogs__comments">{{ "| " + blog.comments.length + " ком. |" }}</p>
   </li>
 </template>
 
@@ -28,6 +30,7 @@ export default {
     ...mapMutations(["deleteBlog", "selectBlog", "changeUpdateBlogState"]),
     handleClickDeleteBtn() {
       this.deleteBlog(this.blog);
+      this.changeUpdateBlogState(false);
     },
 
     handleClickBlog() {
