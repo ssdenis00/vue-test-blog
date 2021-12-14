@@ -1,0 +1,17 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 0 auto;
+}
+.form__input {
+  padding: 3px 5px;
+  box-sizing: border-box;
+}
+
+.form__btn {
+  cursor: pointer;
+  border: none;
+  padding: 3px 5px;
+  box-sizing: border-box;
+}

@@ -1,0 +1,39 @@
+.comments {
+  padding: 0;
+  list-style: none;
+}
+
+.comments__item {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  border-bottom: 1px solid #000;
+  padding: 15px 10px;
+  box-sizing: border-box;
+}
+
+.comments__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.comments__name {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+.comments__text {
+  padding: 0;
+  margin: 10px 0 0;
+  font-size: 14px;
+}
+
+.comments__btn {
+  cursor: pointer;
+  padding: 3px 5px;
+  font-size: 10px;
+  height: 100%;
+  align-self: center;
+  border: none;
+  border-radius: 5px;
+}
